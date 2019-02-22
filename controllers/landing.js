@@ -8,3 +8,8 @@ exports.submit_lead = function(req, res, next) {
   }).then(lead => res.redirect('/'))
   
 }
+exports.show_leads = function(req, res, next) {
+  return models.Lead.findAll()
+    .then(leads => res.render('landing', {title: 'Express', leads: leads}));
+  
+}
