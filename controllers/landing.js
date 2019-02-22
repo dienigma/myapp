@@ -19,7 +19,7 @@ exports.show_lead = function(req, res, next) {
       id: req.params.lead_id
     }
   })
-    .then(lead => res.render('lead', {title: 'Express', lead: lead}));
+    .then(lead => res.render('lead/lead', {title: 'Express', lead: lead}));
   
 }
 
@@ -41,4 +41,14 @@ exports.edit_lead = function(req, res, next) {
     }}
   )
     .then(result => res.redirect('/lead/'+req.params.lead_id));
+}
+
+exports.delete_lead = (req,res,next)=>{
+  return models.Lead.destroy({
+    where:{
+      id: req.params.lead_id
+    }
+  }).then(result => {
+    res.redirect('/leads')
+  })
 }
